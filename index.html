@@ -19,9 +19,17 @@
 
         const socket = io();
 
+        //Evenement de connexion
         socket.on('connect', () => {
           $events.appendChild(newItem('connect'));
         });
+
+        //Reception de l'evenement Hello
+        socket.on('hello', (counter) => {
+            $events.appendChild(newItem(`hello - ${counter}`));
+        })
+
+
     </script>
 </body>
 </html>

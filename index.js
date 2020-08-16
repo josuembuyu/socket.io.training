@@ -9,8 +9,13 @@ const httpServer = require('http').createServer((req, res) => {
 
 const io = require('socket.io')(httpServer);
 
+//Evenement permettant de faire la connexion entre le client et le serveur
 io.on('connect', socket => {
-  console.log('connect');
+    let counter = 0;
+    setInterval(() => {
+        //Chaque seconde, on emet un evenenement
+        socket.emit('hello', ++counter)
+    }, 1000)
 });
 
 httpServer.listen(3000, () => {
